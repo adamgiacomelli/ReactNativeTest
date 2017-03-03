@@ -11,7 +11,7 @@ const DEFAULT_STATE = {
     ImageUrl: "http://sites3.webnow.com/cutiecuts/wp-content/uploads/sites/81/2016/06/kids-haircut-22.jpg"
   },
   {
-    key: 0,
+    key: 1,
     Name: "Mans Haircut",
     Price: 25.00,
     Description: "We cut your mans hair.",

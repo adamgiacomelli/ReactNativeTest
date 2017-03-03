@@ -15,8 +15,8 @@ export default class ServicesEdit extends Component {
 
   constructor(props) {
      super(props);
-     let key = props.serviceKey;
-     this.mode = key != undefined ? mode.EDIT : mode.NEW;
+     this.mode = props.serviceKey != undefined ? mode.EDIT : mode.NEW;
+
      if(this.mode == mode.NEW) {
        this.state = {
            Name: "",
@@ -26,7 +26,7 @@ export default class ServicesEdit extends Component {
            ImageUrl: ""
        };
      } else {
-       let service = props.services.list.find( e => {return key == e.key})
+       let service = props.services.list.find( e => {return props.serviceKey == e.key})
        this.state = service;
      }
    }
