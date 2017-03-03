@@ -78,10 +78,14 @@ export default class ServicesEdit extends Component {
 
   render() {
     return (
-      <View>
-          <View style={{flex:1, backgroundColor: 'powderblue'}} />
-          <Image />
-          <FormLabel>Name*</FormLabel>
+      <View style={{flex:1, flexDirection: 'column'}}>
+        <View style={{height: 150, flexDirection: 'row',  justifyContent:'center'}}>
+            <Image
+              style={{width: 150, height: 150, backgroundColor: 'powderblue'}}
+              source={{ uri : this.state.ImageUrl }}
+            />
+        </View>
+        <FormLabel>Name*</FormLabel>
           <FormInput
             value={ this.state.Name }
             onChangeText={ (name) => this.setState({Name: name}) }
