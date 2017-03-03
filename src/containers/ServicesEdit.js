@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, Image, Alert } from 'react-native';
+import { View, ScrollView, Text, Image, Alert } from 'react-native';
 import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
 import { Actions, Scene } from 'react-native-router-flux';
 
@@ -78,7 +78,7 @@ export default class ServicesEdit extends Component {
 
   render() {
     return (
-      <View style={{flex:1, flexDirection: 'column'}}>
+      <ScrollView style={{flex:1, flexDirection: 'column'}}>
         <View style={{height: 150, flexDirection: 'row',  justifyContent:'center'}}>
             <Image
               style={{width: 150, height: 150, backgroundColor: 'powderblue'}}
@@ -112,7 +112,7 @@ export default class ServicesEdit extends Component {
             value={ this.state.ImageUrl }
             onChangeText={ (imageurl) => this.setState({ImageUrl: imageurl}) }
           />
-      </View>
+      </ScrollView>
     );
   }
 };
