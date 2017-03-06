@@ -1,17 +1,24 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Text, Image, Alert } from 'react-native';
-import { Button, FormLabel, FormInput, FormValidationMessage } from 'react-native-elements'
-import { Actions, Scene } from 'react-native-router-flux';
+import { View, ScrollView, Image, Alert } from 'react-native';
+import { FormLabel, FormInput } from 'react-native-elements';
+import { Actions } from 'react-native-router-flux';
 
 const dismissKeyboard = require('dismissKeyboard');
 
 const mode = {
     NEW: 0,
-    EDIT: 1
-}
+    EDIT: 1,
+};
 
 export default class ServicesEdit extends Component {
   static componentName = 'ServicesEdit';
+
+  static propTypes = {
+    serviceKey: React.PropTypes.string,
+    services: React.PropTypes.object.isRequired,
+    addService: React.PropTypes.func,
+    updateService: React.PropTypes.func,
+  };
 
   constructor(props) {
      super(props);
@@ -23,19 +30,19 @@ export default class ServicesEdit extends Component {
            Price: 0,
            Description: "",
            Duration: 0,
-           ImageUrl: ""
+           ImageUrl: "",
        };
      } else {
-       let service = props.services.list.find( e => {return props.serviceKey == e.key})
+       let service = props.services.list.find( e => {return props.serviceKey == e.key;});
        this.state = service;
      }
    }
 
   componentDidMount() {
     if(this.mode == mode.NEW) {
-      Actions.refresh({rightTitle: 'Save', onRight: this.addService, title:"New service"})
+      Actions.refresh({rightTitle: 'Save', onRight: this.addService, title:"New service"});
     } else {
-      Actions.refresh({rightTitle: 'Update', onRight: this.updateService, title: this.state.Name })
+      Actions.refresh({rightTitle: 'Update', onRight: this.updateService, title: this.state.Name });
     }
   }
 
@@ -48,7 +55,7 @@ export default class ServicesEdit extends Component {
       Alert.alert(
         'Service information missing',
         'Please enter the required fields',
-      )
+      );
     }
   }
 
@@ -61,7 +68,7 @@ export default class ServicesEdit extends Component {
       Alert.alert(
         'Service information missing',
         'Please enter the required fields',
-      )
+      );
     }
   }
 
@@ -115,4 +122,4 @@ export default class ServicesEdit extends Component {
       </ScrollView>
     );
   }
-};
+}

@@ -1,12 +1,16 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component } from 'react';
 import { View, Text, ListView } from 'react-native';
-import { Actions, Scene } from 'react-native-router-flux';
 
 import ServiceCard from '../components/ServiceCard';
 import { ErrorMessages } from '../constants/Errors';
 
 export default class ServicesView extends Component {
+
   static componentName = 'ServicesView';
+
+  static propTypes = {
+    services: React.PropTypes.object.isRequired,
+  };
 
   constructor(props) {
     super();
@@ -17,16 +21,16 @@ export default class ServicesView extends Component {
 
     this.state = {
       dataSource: ds.cloneWithRows(props.services.list),
-      isRefreshing: false
+      isRefreshing: false,
     };
   }
 
-  update = () => {
-    this.state.dataSource = this.state.dataSource.cloneWithRows(this.props.services.list);
+  componentWillReceiveProps(nextProps) {
+    let updatedState = this.state.dataSource.cloneWithRows(nextProps.services.list);
+    this.setState({dataSource: updatedState});
   }
 
   render() {
-    this.update();
     const { services } = this.props;
     const { isRefreshing, dataSource } = this.state;
 
@@ -43,4 +47,4 @@ export default class ServicesView extends Component {
       </View>
     );
   }
-};
+}

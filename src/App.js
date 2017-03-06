@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { AppRegistry } from 'react-native';
 import { connect, Provider } from 'react-redux';
 import { Actions, Router, Scene } from 'react-native-router-flux';
 import { createStore, applyMiddleware, compose } from 'redux';
@@ -23,7 +22,7 @@ export default class App extends Component {
 
   render () {
     const {routes} = this.context;
-    
+
     return (
       <Provider store={store}>
         <RouterWithRedux>

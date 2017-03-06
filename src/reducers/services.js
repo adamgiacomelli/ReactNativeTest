@@ -1,26 +1,26 @@
 import ServiceActionConst from '../actions/ServiceConstants';
-import uuid from 'react-native-uuid'
+import uuid from 'react-native-uuid';
 
 const DEFAULT_STATE = {
   list: [{
-    key: 0,
-    Name: "Childs Haircut",
+    key: "a-child-haircut-key",
+    Name: "Child's Haircut",
     Price: 5.00,
-    Description: "We cut your childs hair.",
+    Description: "We cut your child's hair.",
     Duration: 20,
-    ImageUrl: "http://sites3.webnow.com/cutiecuts/wp-content/uploads/sites/81/2016/06/kids-haircut-22.jpg"
+    ImageUrl: "http://sites3.webnow.com/cutiecuts/wp-content/uploads/sites/81/2016/06/kids-haircut-22.jpg",
   },
   {
-    key: 1,
-    Name: "Mans Haircut",
+    key: "a-man-haircut-key",
+    Name: "Man's Haircut",
     Price: 25.00,
-    Description: "We cut your mans hair.",
+    Description: "We cut your man's hair.",
     Duration: 35,
-    ImageUrl: "https://cdn.shutterstock.com/shutterstock/videos/16414177/thumb/1.jpg"
-  }
-]}
+    ImageUrl: "https://cdn.shutterstock.com/shutterstock/videos/16414177/thumb/1.jpg",
+  },
+]};
 
-export default (state = DEFAULT_STATE, {type, payload} = action) => {
+export default (state = DEFAULT_STATE, {type, payload}) => {
   switch(type) {
     case ServiceActionConst.ADD_SERVICE:
     //Generate uuid for new service
@@ -28,18 +28,21 @@ export default (state = DEFAULT_STATE, {type, payload} = action) => {
     return {
       ...state,
       list: [...state.list, payload],
-    }
+    };
+
     case ServiceActionConst.UPDATE_SERVICE:
       return {
         ...state,
-        list: state.list.map( (el, i) => el.key == payload.key ? payload : el),
-      }
+        list: state.list.map( (el) => el.key == payload.key ? payload : el),
+      };
+
     case ServiceActionConst.DELETE_SERVICE :
       return {
         ...state,
-        list: state.list.filter( (el, i) => el.key == payload.key ),
-      }
+        list: state.list.filter( (el) => el.key == payload.key ),
+      };
+
     default:
-      return state
+      return state;
   }
-}
+};

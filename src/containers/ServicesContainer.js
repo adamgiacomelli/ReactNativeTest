@@ -5,7 +5,7 @@
  * https://github.com/mcnamee/react-native-starter-app
  */
 import { connect } from 'react-redux';
-import * as actions from '../actions/ServiceActions'
+import * as actions from '../actions/ServiceActions';
 
 
 // The component we're mapping to
@@ -13,12 +13,12 @@ import ServicesRender from './ServicesView';
 
 // What data from the store shall we send to the component?
 const mapStateToProps = state => ({
-  services: state.services
+  services: state.services,
 });
 
 // Any actions to map to the component?
 const mapDispatchToProps = {
-  ...actions
+  ...actions,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ServicesRender);

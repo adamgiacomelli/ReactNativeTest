@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
-import { View, Text, Button, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 
 export default class ServiceCard extends Component {
   static componentName = 'ServiceCard';
 
+  static propTypes = {
+    service: React.PropTypes.object,
+  };
+
   onPress = () => {
      Actions.servicesEdit({serviceKey: this.props.service.key});
   }
 
   render() {
-    const { onPress, service } = this.props;
+    const { service } = this.props;
 
     return (
       <TouchableOpacity style={{flex:1, padding: 10, flexDirection: 'row' }} onPress={this.onPress}>
@@ -22,7 +26,7 @@ export default class ServiceCard extends Component {
       <View style={{
           marginLeft: 10,
           flexDirection: 'column',
-          justifyContent: 'center'
+          justifyContent: 'center',
         }}>
           <Text>{service.Name}</Text>
           <Text>{service.Duration}min {service.Price} €</Text>
@@ -30,4 +34,4 @@ export default class ServiceCard extends Component {
       </TouchableOpacity>
     );
   }
-};
+}
