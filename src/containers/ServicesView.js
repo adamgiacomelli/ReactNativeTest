@@ -4,6 +4,9 @@ import { View, Text, ListView } from 'react-native';
 import ServiceCard from '../components/ServiceCard';
 import { ErrorMessages } from '../constants/Errors';
 
+/*  Component styles  */
+import ServicesListStyle from '../style/components/services-list';
+
 export default class ServicesView extends Component {
 
   static componentName = 'ServicesView';
@@ -39,8 +42,8 @@ export default class ServicesView extends Component {
     }
 
     return (
-      <View>
-        <ListView
+      <View style={[ ServicesListStyle.wrapper ]}>
+        <ListView style={[ ServicesListStyle.list ]}
           dataSource={dataSource}
           renderRow={service => <ServiceCard service={service}/>}
         />

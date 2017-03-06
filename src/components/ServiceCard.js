@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+/*  Global styles  */
+import { GridStyle } from '../style/';
+/*  Component styles  */
+import ServiceCardStyle from '../style/components/service-card';
 
 export default class ServiceCard extends Component {
   static componentName = 'ServiceCard';
@@ -18,18 +22,15 @@ export default class ServiceCard extends Component {
     const { service } = this.props;
 
     return (
-      <TouchableOpacity style={{flex:1, padding: 10, flexDirection: 'row' }} onPress={this.onPress}>
+      <TouchableOpacity style={[ GridStyle.row, GridStyle.padding ]} onPress={this.onPress}>
         <Image
-          style={{width: 75, height: 75, backgroundColor: 'powderblue'}}
+          style={[ ServiceCardStyle.image ]}
           source={{ uri : service.ImageUrl }}
         />
-      <View style={{
-          marginLeft: 10,
-          flexDirection: 'column',
-          justifyContent: 'center',
-        }}>
-          <Text>{service.Name}</Text>
-          <Text>{service.Duration}min {service.Price} €</Text>
+
+      <View style={[ ServiceCardStyle.textBox ]}>
+          <Text style={[ ServiceCardStyle.textName ]}>{service.Name}</Text>
+          <Text style={[ ServiceCardStyle.textInfo ]}>{service.Duration} min • {service.Price} €</Text>
         </View>
       </TouchableOpacity>
     );

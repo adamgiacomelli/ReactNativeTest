@@ -9,6 +9,9 @@ import reducers from './reducers';
 import ServicesView from './containers/ServicesContainer';
 import ServicesEditView from './containers/ServicesEditContainer';
 
+/*  Component styles  */
+import SceneStyle from './style/components/scene';
+
 // create store...
 const middleware = [/* ...your middleware (i.e. thunk) */];
 const store = compose(
@@ -25,9 +28,12 @@ export default class App extends Component {
 
     return (
       <Provider store={store}>
-        <RouterWithRedux>
+        <RouterWithRedux
+          navigationBarStyle={[ SceneStyle.navbar ]}
+          titleStyle={[ SceneStyle.navbarTitle ]}
+          >
             <Scene
-              sceneStyle={{ marginTop:65 }}
+              sceneStyle={[ SceneStyle.main ]}
               key="servicesList"
               component={ServicesView}
               title="Services"
@@ -35,7 +41,7 @@ export default class App extends Component {
               rightTitle="New"
               />
             <Scene
-              sceneStyle={{ marginTop:65 }}
+              sceneStyle={[ SceneStyle.main ]}
               key="servicesEdit"
               component={ServicesEditView}
               title="Services"

@@ -3,6 +3,8 @@ import { View, ScrollView, Image, Alert } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
+import ServicesEditStyle from '../style/components/services-edit';
+
 const dismissKeyboard = require('dismissKeyboard');
 
 const mode = {
@@ -85,37 +87,43 @@ export default class ServicesEdit extends Component {
 
   render() {
     return (
-      <ScrollView style={{flex:1, flexDirection: 'column'}}>
-        <View style={{height: 150, flexDirection: 'row',  justifyContent:'center'}}>
+      <ScrollView style={[ ServicesEditStyle.wrapper ]}>
+        <View style={[ ServicesEditStyle.imageWrapper ]}>
             <Image
-              style={{width: 150, height: 150, backgroundColor: 'powderblue'}}
+              style={[ ServicesEditStyle.image ]}
               source={{ uri : this.state.ImageUrl }}
             />
         </View>
-        <FormLabel>Name*</FormLabel>
+        <FormLabel>Service Name*</FormLabel>
           <FormInput
+            style={[ ServicesEditStyle.input ]}
             value={ this.state.Name }
             onChangeText={ (name) => this.setState({Name: name}) }
             />
           <FormLabel>Price*</FormLabel>
           <FormInput
+            style={[ ServicesEditStyle.input ]}
             value={ this.state.Price.toString() }
             onChangeText={ (price) => this.setState({Price: price}) }
             keyboardType = 'numeric'
           />
           <FormLabel>Description</FormLabel>
           <FormInput
+            style={[ ServicesEditStyle.input ]}
             value={ this.state.Description }
             onChangeText={ (description) => this.setState({Description: description}) }
           />
-          <FormLabel>Duration</FormLabel>
           <FormInput
+            style={[ ServicesEditStyle.input ]}
+            placeholder="Total Duration"
+            placeholderTextColor="#FFF"
             value={ this.state.Duration.toString() }
             onChangeText={ (duration) => this.setState({Duration: duration}) }
             keyboardType = 'numeric'
           />
           <FormLabel>ImageUrl</FormLabel>
           <FormInput
+            style={[ ServicesEditStyle.input ]}
             value={ this.state.ImageUrl }
             onChangeText={ (imageurl) => this.setState({ImageUrl: imageurl}) }
           />
