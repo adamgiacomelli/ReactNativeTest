@@ -7,6 +7,7 @@ export default {
 
   wrapper: {
     flexDirection: 'column',
+    margin: 20,
   },
 
   imageWrapper: {

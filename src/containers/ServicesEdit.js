@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image, Alert } from 'react-native';
+import { View, ScrollView, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
 
 import ServicesEditStyle from '../style/components/services-edit';
 import FormStylesheet from '../style/components/form-style';
+import Colors from '../style/colors';
 
 const dismissKeyboard = require('dismissKeyboard');
 
@@ -18,19 +19,44 @@ const mode = {
 /*                */
 const FormNative = require('tcomb-form-native');
 
+let durations = {};
+for(let i = 0; i < 12; ++i) {
+  durations[i] = i*5 + "min";
+}
+
 let Form = FormNative.form.Form;
 let Service = FormNative.struct({
   Name: FormNative.String,
   Price: FormNative.Number,
   Description: FormNative.String,
-  Duration: FormNative.Number,
+  Duration: FormNative.enums(durations),
   ImageUrl: FormNative.String,
 });
 
-//Clone default stylesheet
+
 //Update options
 let options = {
    stylesheet: FormStylesheet,
+   auto: 'placeholders',
+   fields: {
+     Name: {
+       label: 'Service name',
+       placeholderTextColor: Colors.form.placeholder,
+       placeholder: 'e.g. Smokey eye makeup',
+     },
+     Description: {
+       label: 'Describe your service',
+       placeholderTextColor: Colors.form.placeholder,
+     },
+     Price: {
+       label: 'Price',
+       placeholderTextColor: Colors.form.placeholder,
+       placeholder: 'e.g. $100',
+     },
+     Duration: {
+       label: 'Total duration',
+     },
+   },
 };
 
 export default class ServicesEdit extends Component {

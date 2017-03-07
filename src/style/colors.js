@@ -5,5 +5,9 @@ export default {
     main2: '#FF0000',
     white: '#FFFFFF',
     textGray: '#5b5e63',
+    textDarkGray: '#28292d',
+  },
+  form: {
+    placeholder: '#28292d',
   },
 };
