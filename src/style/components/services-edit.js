@@ -16,9 +16,10 @@ export default {
   },
 
   image: {
-    width: 150,
-    height: 150,
-    backgroundColor: 'powderblue',
+    width: 100,
+    height: 100,
+    backgroundColor: Colors.app.main,
+    margin: 20,
   },
 
   input: {

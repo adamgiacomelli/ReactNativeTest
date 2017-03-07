@@ -91,7 +91,7 @@ export default class ServicesEdit extends Component {
         <View style={[ ServicesEditStyle.imageWrapper ]}>
             <Image
               style={[ ServicesEditStyle.image ]}
-              source={{ uri : this.state.ImageUrl }}
+              source={ this.state.ImageUrl != "" ? {uri : this.state.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
             />
         </View>
         <FormLabel>Service Name*</FormLabel>

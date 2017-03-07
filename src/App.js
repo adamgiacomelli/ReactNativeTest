@@ -27,7 +27,6 @@ export default class App extends Component {
   render () {
     const {routes} = this.context;
 
-
     return (
       <Provider style={[ SceneStyle.main ]} store={store}>
         <RouterWithRedux
