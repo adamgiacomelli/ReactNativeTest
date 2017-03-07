@@ -11,6 +11,11 @@ export default {
     backgroundColor: Colors.app.background,
   },
 
+  transitions: {
+    backgroundColor: Colors.app.background,
+    shadowColor: Colors.app.main,
+  },
+
   navbarTitle: {
     color: Colors.app.white,
   },
@@ -18,4 +23,9 @@ export default {
   navbarBtnText: {
     color: Colors.app.main,
   },
+
+  backBtnText: {
+    tintColor: Colors.app.main,
+  },
+
 };

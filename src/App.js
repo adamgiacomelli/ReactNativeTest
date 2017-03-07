@@ -23,14 +23,17 @@ export default class App extends Component {
     super(props);
   }
 
+
   render () {
     const {routes} = this.context;
 
+
     return (
-      <Provider store={store}>
+      <Provider style={[ SceneStyle.main ]} store={store}>
         <RouterWithRedux
           navigationBarStyle={[ SceneStyle.navbar ]}
           titleStyle={[ SceneStyle.navbarTitle ]}
+          getSceneStyle={() => (SceneStyle.transitions) }
           >
             <Scene
               sceneStyle={[ SceneStyle.main ]}
@@ -38,6 +41,9 @@ export default class App extends Component {
               component={ServicesView}
               title="Services"
               onRight={() => Actions.servicesEdit() }
+              rightButtonTextStyle={[ SceneStyle.navbarBtnText ]}
+              leftButtonTextStyle={[ SceneStyle.navbarBtnText ]}
+              leftButtonIconStyle={[ SceneStyle.backBtnText ]}
               rightTitle="New"
               />
             <Scene
@@ -46,6 +52,9 @@ export default class App extends Component {
               component={ServicesEditView}
               title="Services"
               onRight={() => Actions.servicesList()}
+              rightButtonTextStyle={[ SceneStyle.navbarBtnText ]}
+              leftButtonTextStyle={[ SceneStyle.navbarBtnText ]}
+              leftButtonIconStyle={[ SceneStyle.backBtnText ]}
               rightTitle="Save"
             />
         </RouterWithRedux>
