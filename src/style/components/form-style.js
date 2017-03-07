@@ -9,6 +9,8 @@ var BORDER_COLOR = Colors.app.textDarkGray;
 var PLACEHOLDER_COLOR = Colors.app.textDarkGray;
 var DISABLED_COLOR = '#777777';
 var DISABLED_BACKGROUND_COLOR = '#eeeeee';
+
+var FONT_SIZE_LARGE = 20;
 var FONT_SIZE = 17;
 var FONT_SIZE_LABEL = 15;
 var FONT_WEIGHT_LABEL = '200';
@@ -101,6 +103,27 @@ var stylesheet = Object.freeze({
       color: DISABLED_COLOR,
       backgroundColor: DISABLED_BACKGROUND_COLOR,
     },
+  },
+  pickerLabel: {
+    color: INPUT_COLOR,
+    fontSize: FONT_SIZE_LARGE,
+    height: 36,
+    padding: (Platform.OS === 'ios') ? 7 : 0,
+    borderRadius: 0,
+    borderColor: BORDER_COLOR,
+    borderBottomWidth: 0,
+    marginTop: 5,
+    marginBottom: 0,
+  },
+  picker: {
+    color: INPUT_COLOR,
+    height: 36,
+    padding: (Platform.OS === 'ios') ? 7 : 0,
+    borderRadius: 0,
+    borderColor: BORDER_COLOR,
+    borderBottomWidth: 1,
+    marginTop: 0,
+    marginBottom: 0,
   },
   checkbox: {
     normal: {

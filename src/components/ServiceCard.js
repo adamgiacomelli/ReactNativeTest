@@ -30,7 +30,7 @@ export default class ServiceCard extends Component {
 
       <View style={[ ServiceCardStyle.textBox ]}>
           <Text style={[ ServiceCardStyle.textName ]}>{service.Name}</Text>
-          <Text style={[ ServiceCardStyle.textInfo ]}>{service.Duration*5} min • {service.Price} €</Text>
+          <Text style={[ ServiceCardStyle.textInfo ]}>{service.Duration} min • {service.Price} €</Text>
         </View>
       </TouchableOpacity>
     );

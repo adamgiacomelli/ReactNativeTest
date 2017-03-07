@@ -2,34 +2,25 @@ import React, { Component } from 'react';
 import { View, ScrollView, Image } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 
+import dismissKeyboard from 'dismissKeyboard';
+import FormNative from 'tcomb-form-native';
 
 import ServicesEditStyle from '../style/components/services-edit';
 import FormStylesheet from '../style/components/form-style';
 import Colors from '../style/colors';
 
-const dismissKeyboard = require('dismissKeyboard');
-
-const mode = {
-    NEW: 0,
-    EDIT: 1,
-};
+import SelectMinutesTemplate from '../components/SelectMinutes';
 
 /*                */
 /* Configure Form */
 /*                */
-const FormNative = require('tcomb-form-native');
-
-let durations = {};
-for(let i = 0; i < 12; ++i) {
-  durations[i] = i*5 + "min";
-}
 
 let Form = FormNative.form.Form;
 let Service = FormNative.struct({
   Name: FormNative.String,
   Price: FormNative.Number,
   Description: FormNative.String,
-  Duration: FormNative.enums(durations),
+  Duration: FormNative.Number,
   ImageUrl: FormNative.String,
 });
 
@@ -55,8 +46,15 @@ let options = {
      },
      Duration: {
        label: 'Total duration',
+       template: SelectMinutesTemplate,
      },
    },
+};
+
+/* Component mode enum */
+const mode = {
+    NEW: 0,
+    EDIT: 1,
 };
 
 export default class ServicesEdit extends Component {
