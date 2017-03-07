@@ -1,15 +1,36 @@
 import React, { Component } from 'react';
 import { View, ScrollView, Image, Alert } from 'react-native';
-import { FormLabel, FormInput } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 
+
 import ServicesEditStyle from '../style/components/services-edit';
+import FormStylesheet from '../style/components/form-style';
 
 const dismissKeyboard = require('dismissKeyboard');
 
 const mode = {
     NEW: 0,
     EDIT: 1,
+};
+
+/*                */
+/* Configure Form */
+/*                */
+const FormNative = require('tcomb-form-native');
+
+let Form = FormNative.form.Form;
+let Service = FormNative.struct({
+  Name: FormNative.String,
+  Price: FormNative.Number,
+  Description: FormNative.String,
+  Duration: FormNative.Number,
+  ImageUrl: FormNative.String,
+});
+
+//Clone default stylesheet
+//Update options
+let options = {
+   stylesheet: FormStylesheet,
 };
 
 export default class ServicesEdit extends Component {
@@ -28,15 +49,17 @@ export default class ServicesEdit extends Component {
 
      if(this.mode == mode.NEW) {
        this.state = {
-           Name: "",
-           Price: 0,
-           Description: "",
-           Duration: 0,
-           ImageUrl: "",
+         service: {
+             Name: "",
+             Price: 0,
+             Description: "",
+             Duration: 0,
+             ImageUrl: "",
+         },
        };
      } else {
        let service = props.services.list.find( e => {return props.serviceKey == e.key;});
-       this.state = service;
+       this.state = {service: service};
      }
    }
 
@@ -49,84 +72,37 @@ export default class ServicesEdit extends Component {
   }
 
   addService = () => {
-    if(this.validateForm()) {
-      this.props.addService(this.state);
+      this.props.addService(this.state.service);
       dismissKeyboard();
       Actions.pop();
-    } else {
-      Alert.alert(
-        'Service information missing',
-        'Please enter the required fields',
-      );
-    }
   }
 
   updateService = () => {
-    if(this.validateForm()) {
-      this.props.updateService(this.state);
+      this.props.updateService(this.state.service);
       dismissKeyboard();
       Actions.pop();
-    } else {
-      Alert.alert(
-        'Service information missing',
-        'Please enter the required fields',
-      );
-    }
   }
 
-  //Minimal validation
-  validateForm = () => {
-    if(this.state.Name === "") {
-      return false;
-    } else if(this.state.Price == 0) {
-      return false;
-    }
-
-    return true;
+  onChange = (value) => {
+    this.setState({service: value});
   }
 
   render() {
     return (
       <ScrollView style={[ ServicesEditStyle.wrapper ]}>
         <View style={[ ServicesEditStyle.imageWrapper ]}>
-            <Image
-              style={[ ServicesEditStyle.image ]}
-              source={ this.state.ImageUrl != "" ? {uri : this.state.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
+          <Image
+            style={[ ServicesEditStyle.image ]}
+            source={ this.state.service.ImageUrl != "" ? {uri : this.state.service.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
             />
         </View>
-        <FormLabel>Service Name*</FormLabel>
-          <FormInput
-            style={[ ServicesEditStyle.input ]}
-            value={ this.state.Name }
-            onChangeText={ (name) => this.setState({Name: name}) }
-            />
-          <FormLabel>Price*</FormLabel>
-          <FormInput
-            style={[ ServicesEditStyle.input ]}
-            value={ this.state.Price.toString() }
-            onChangeText={ (price) => this.setState({Price: price}) }
-            keyboardType = 'numeric'
-          />
-          <FormLabel>Description</FormLabel>
-          <FormInput
-            style={[ ServicesEditStyle.input ]}
-            value={ this.state.Description }
-            onChangeText={ (description) => this.setState({Description: description}) }
-          />
-          <FormInput
-            style={[ ServicesEditStyle.input ]}
-            placeholder="Total Duration"
-            placeholderTextColor="#FFF"
-            value={ this.state.Duration.toString() }
-            onChangeText={ (duration) => this.setState({Duration: duration}) }
-            keyboardType = 'numeric'
-          />
-          <FormLabel>ImageUrl</FormLabel>
-          <FormInput
-            style={[ ServicesEditStyle.input ]}
-            value={ this.state.ImageUrl }
-            onChangeText={ (imageurl) => this.setState({ImageUrl: imageurl}) }
-          />
+        <Form
+           ref="form"
+           type={Service}
+           value={this.state.service}
+           options={options}
+           onChange={this.onChange}
+         />
       </ScrollView>
     );
   }

@@ -21,9 +21,4 @@ export default {
     backgroundColor: Colors.app.main,
     margin: 20,
   },
-
-  input: {
-    color: '#FF0000',
-    placeholderTextColor: Colors.white,
-  },
 };
