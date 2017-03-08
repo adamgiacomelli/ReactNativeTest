@@ -6,6 +6,7 @@ export default {
     white: '#FFFFFF',
     textGray: '#5b5e63',
     textDarkGray: '#28292d',
+    pickerTextColor: '#7e8387',
   },
   form: {
     placeholder: '#28292d',

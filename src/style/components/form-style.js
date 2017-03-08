@@ -114,10 +114,12 @@ var stylesheet = Object.freeze({
     borderBottomWidth: 0,
     marginTop: 5,
     marginBottom: 0,
+    flex: 5,
   },
   picker: {
-    color: INPUT_COLOR,
+    color: Colors.app.pickerTextColor,
     height: 36,
+    flex: 2,
     padding: (Platform.OS === 'ios') ? 7 : 0,
     borderRadius: 0,
     borderColor: BORDER_COLOR,

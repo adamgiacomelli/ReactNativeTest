@@ -9,12 +9,10 @@ export default function SelectMinutesTemplate(locals) {
   };
   var labelStyle = {
     ...locals.stylesheet.pickerLabel,
-    flex:1,
   };
 
   var pickerStyle = {
     ...locals.stylesheet.picker,
-    flex:1,
   };
   let minuteRows = [];
   let numrows = 12;
@@ -24,7 +22,8 @@ export default function SelectMinutesTemplate(locals) {
   return (
     <View style={containerStyle}>
       <Text style={labelStyle}>{locals.label}</Text>
-      <Picker style={pickerStyle}
+      <Picker
+        style={pickerStyle}
         selectedValue={locals.value}
         onValueChange={(value) => locals.onChange(value)}
         >

@@ -25,7 +25,7 @@ export default class ServiceCard extends Component {
       <TouchableOpacity style={[ GridStyle.row, GridStyle.padding ]} onPress={this.onPress}>
         <Image
           style={[ ServiceCardStyle.image ]}
-          source={{ uri : service.ImageUrl }}
+          source={ service.ImageUrl != "" ? { uri: service.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
         />
 
       <View style={[ ServiceCardStyle.textBox ]}>

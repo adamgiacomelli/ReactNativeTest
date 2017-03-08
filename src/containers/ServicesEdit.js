@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { View, ScrollView, Image } from 'react-native';
+import { Text, TouchableOpacity, ScrollView, Image } from 'react-native';
+import update from 'immutability-helper';
 import { Actions } from 'react-native-router-flux';
+import ImagePicker from 'react-native-image-picker';
 
 import dismissKeyboard from 'dismissKeyboard';
 import FormNative from 'tcomb-form-native';
@@ -10,6 +12,15 @@ import FormStylesheet from '../style/components/form-style';
 import Colors from '../style/colors';
 
 import SelectMinutesTemplate from '../components/SelectMinutes';
+
+
+var imagePickerOptions = {
+  title: 'Select service image',
+  storageOptions: {
+    skipBackup: true,
+    path: 'images',
+  },
+};
 
 /*                */
 /* Configure Form */
@@ -21,7 +32,6 @@ let Service = FormNative.struct({
   Price: FormNative.Number,
   Description: FormNative.String,
   Duration: FormNative.Number,
-  ImageUrl: FormNative.String,
 });
 
 
@@ -107,6 +117,27 @@ export default class ServicesEdit extends Component {
       Actions.pop();
   }
 
+  pickImage = () => {
+    ImagePicker.showImagePicker(imagePickerOptions, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      }
+      else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      }
+      else if (response.uri == undefined) {
+        console.log('No image selected');
+      } else {
+        // You can also display the image using data:
+        // let source = { uri: 'data:image/jpeg;base64,' + response.data };
+        let newState = update(this.state,{
+          service: { ImageUrl: { $set: response.uri } }
+        });
+        this.setState(newState);
+        }
+    });
+  }
+
   onChange = (value) => {
     this.setState({service: value});
   }
@@ -114,12 +145,13 @@ export default class ServicesEdit extends Component {
   render() {
     return (
       <ScrollView style={[ ServicesEditStyle.wrapper ]}>
-        <View style={[ ServicesEditStyle.imageWrapper ]}>
+        <TouchableOpacity style={[ ServicesEditStyle.imageWrapper ]} onPress={this.pickImage}>
           <Image
             style={[ ServicesEditStyle.image ]}
-            source={ this.state.service.ImageUrl != "" ? {uri : this.state.service.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
+            source={ this.state.service.ImageUrl != "" ? { uri: this.state.service.ImageUrl } :  require('../../public/img/placeholder_image.png')   }
             />
-        </View>
+          <Text style={[ ServicesEditStyle.imageText ]}>Add service image</Text>
+        </TouchableOpacity>
         <Form
            ref="form"
            type={Service}

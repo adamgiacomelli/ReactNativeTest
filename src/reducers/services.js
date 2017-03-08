@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
     Price: 5.00,
     Description: "We cut your child's hair.",
     Duration: 5,
-    ImageUrl: "http://sites3.webnow.com/cutiecuts/wp-content/uploads/sites/81/2016/06/kids-haircut-22.jpg",
+    ImageUrl: "", //http://sites3.webnow.com/cutiecuts/wp-content/uploads/sites/81/2016/06/kids-haircut-22.jpg
   },
   {
     key: "a-man-haircut-key",
@@ -16,7 +16,7 @@ const DEFAULT_STATE = {
     Price: 25.00,
     Description: "We cut your man's hair.",
     Duration: 20,
-    ImageUrl: "https://cdn.shutterstock.com/shutterstock/videos/16414177/thumb/1.jpg",
+    ImageUrl: "", //https://cdn.shutterstock.com/shutterstock/videos/16414177/thumb/1.jpg",
   },
 ]};
 

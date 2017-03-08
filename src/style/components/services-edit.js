@@ -11,9 +11,11 @@ export default {
   },
 
   imageWrapper: {
-    height: 150,
-    flexDirection: 'row',
+    height: 170,
+    flexDirection: 'column',
     justifyContent:'center',
+    alignItems: 'center',
+    margin: 10,
   },
 
   image: {
@@ -21,5 +23,10 @@ export default {
     height: 100,
     backgroundColor: Colors.app.main,
     margin: 20,
+  },
+
+  imageText: {
+    flex: 1,
+    color: Colors.app.main,
   },
 };
