@@ -8,11 +8,11 @@ export default function SelectMinutesTemplate(locals) {
     flex: 1,
   };
   var labelStyle = {
-    ...locals.stylesheet.pickerLabel,
+    ...locals.stylesheet.selectMinutesLabel,
   };
 
   var pickerStyle = {
-    ...locals.stylesheet.picker,
+    ...locals.stylesheet.selectMinutes,
   };
   let minuteRows = [];
   let numrows = 12;

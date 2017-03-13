@@ -104,7 +104,7 @@ var stylesheet = Object.freeze({
       backgroundColor: DISABLED_BACKGROUND_COLOR,
     },
   },
-  pickerLabel: {
+  selectMinutesLabel: {
     color: INPUT_COLOR,
     fontSize: FONT_SIZE_LARGE,
     height: 36,
@@ -116,8 +116,7 @@ var stylesheet = Object.freeze({
     marginBottom: 0,
     flex: 5,
   },
-  picker: {
-    color: Colors.app.pickerTextColor,
+  selectMinutes: {
     height: 36,
     flex: 2,
     padding: (Platform.OS === 'ios') ? 7 : 0,
@@ -126,6 +125,30 @@ var stylesheet = Object.freeze({
     borderBottomWidth: 1,
     marginTop: 0,
     marginBottom: 0,
+  },
+  selectMinutesLabelIos: {
+    fontSize: FONT_SIZE_LARGE,
+    height: 36,
+    padding: (Platform.OS === 'ios') ? 7 : 0,
+    borderRadius: 0,
+    borderColor: BORDER_COLOR,
+    borderBottomWidth: 0,
+    marginTop: 5,
+    marginBottom: 0,
+    flex: 1,
+  },
+  selectMinutesIos: {
+    height: 36,
+    flex: 1,
+    padding: (Platform.OS === 'ios') ? 7 : 0,
+    borderRadius: 0,
+    borderColor: BORDER_COLOR,
+    borderBottomWidth: 1,
+    marginTop: 0,
+    marginBottom: 0,
+  },
+  selectMinutesIosItem: {
+    color: Colors.app.pickerTextColor,
   },
   checkbox: {
     normal: {
